@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head> <title>Home Page</title>
+        <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+        <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css')}}" />
+    </head>
+    <body>
+
+        <div class="profile-block">
+            <div class="panel text-center">
+                <div class="user-heading"> <img class="img-circle" src="{{data.pic}}" alt="Google profile pic"><br>
+                    <h1>{{data.name}}</h1>
+                    <p>+{{rec}}    -{{pay}}</p>
+                  </div>
+
+                <ul class="nav nav-pills nav-stacked">
+                    <li><a href="/split"><i class="fa fa-map-o"></i>Split</a></li>
+                    <li><a href="/friends"><i class="fa fa-users"></i>Friends</a></li>
+                    <li><a href="/events"><i class="fa fa-usd" aria-hidden="true"></i> Events</a></li>
+                    <li><a href="/notifications"><i class="fa fa-bell" aria-hidden="true"></i>Notifications</a></li>
+                    <li><a href="/logout"><i class="fa fa-sign-out"></i>Logout</a></li>
+                </ul>
+            </div>
+        </div>
+        <!-- <img src="{{data.pic}}" alt="Google profile pic"></img>
+        <h3>+{{rec}}   -{{pay}}</h3>
+        <p> {{data.name}}</p>
+        <a class="button" href="/logout">Logout</a>
+        <br>
+        <a class="button" href="/split">Split</a>
+        <a class="button" href="/friends">Friends</a>
+        <a class="button" href="/events">Events</a>
+        <a class="button" href="/notifications">Notifications</a> -->
+    </body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+    <head><title>Split Manually</title>
+        <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+        <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css')}}" />
+    </head>
+    <body>
+        <div class="profile-block">
+            <div class="panel text-center">
+                <div class="user-heading">
+                    <a href="/"><button class="btn btn-xs btn-primary pull-right">Home</button></a><br>
+                    <h1>Split</h1>
+                  </div><br>
+
+                  <form class="form-inline" action = "{{ url_for('splitmanually') }}" method = "POST" enctype = "multipart/form-data">
+                    <div class="form-group mb-2">
+                        
+                        <p>Event Name: <input type="text" name="name" class="pull-right" value="{{name}}"></p>
+                        <p>Amount: <input type="text" name="amount" class="pull-right" value="{{amount}}"></p>
+                        
+                      </div>
+                      <br><br><br>
+
+                      <ul class="nav nav-pills nav-stacked">
+                        {% for i in data %}
+                        <li><p>
+                        <img src="{{i.profile_pic}}" class="img-circle" height="20" width="20" alt="Pic unavailable"></img> {{i.name}} paid Rs.  
+                        <input type = "text"  id = "{{i.email}}" name = "{{i.email}}paid" value="{{i.share}}"> and owes Rs. 
+                        <input type = "text"  id = "{{i.email}}" name = "{{i.email}}owes" value="0">
+                        </p>
+                        </li>
+                        {% endfor %}
+                      </ul>
+                      <br>
+                      <input type="submit" class="btn btn-primary mb-2" name="submit" value="Split">
+
+
+                </form>
+                </div>
+                </div>
+
+        <!-- <form action = "{{ url_for('splitmanually') }}" method = "POST" enctype = "multipart/form-data">
+            <p><input type = "text" name = "name"  value = "{{name}}">    </p>
+            <p><input type = "text" name = "amount"  value = "{{amount}}">    </p> -->
+
+            <!-- <ul name = "lst" id = "lst">
+                {% for i in data %}
+                    <li>
+                    <label for="{{i.name}}"><img src="{{i.profile_pic}}" alt="Pic unavailable"></img>  {{i.name}} </label> paid Rs. 
+                    <input type = "text" id = "{{i.email}}" name = "{{i.email}}paid"  value="{{i.share}}"> and owes Rs.
+                    <input type = "text" id = "{{i.email}}" name = "{{i.email}}owes"  value="0"> 
+                    </li>
+                {% endfor %} -->
+                
+                <!-- {% for i in data %}
+                    {{i.name}} {{i.email}}
+                {% endfor %} -->
+                <!-- <br>
+                <input type = "submit" name = "submit" value = "Split">
+                
+                </ul> -->
+
+
+        <!-- </form> -->
+    </body>
+</html>

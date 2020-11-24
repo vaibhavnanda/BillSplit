@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+    <head> <title>Events</title>
+        <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+        <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css')}}" />
+    </head>
+    <body>
+        <div class="profile-block">
+            <div class="panel text-center">
+                <div class="user-heading">
+                    <a href="/"><button class="btn btn-xs btn-primary pull-right">Home</button></a>
+                    <a href="/events"><button class="btn btn-xs btn-primary pull-left">Back</button></a>
+                    <br>
+                    <label><h1>Events</h1></label>
+                  </div><br>
+
+                  <h1>{{name}}</h1>
+                  <br>
+                  <div align="right">Amount: <label>{{amount}}</label></div>
+                  <div align="right">Date: <label>{{date}}</label></div>
+                  <div align="right">Time: <label>{{time}}</label></div>
+
+                <div align="left"><label>People who paid:</label> </div><br>
+
+                <ul class="nav nav-pills nav-stacked">
+                    {% if spenderList %}
+                        {% for j in spenderList %}   
+                    <li><div align="left">
+                        <!-- <a href="{{url_for('userinfo' , id=j.email)}}"> -->
+                            <a href="/userinfo/events {{j.email}}">
+                            <img src="{{j.profile_pic}}" class="img-circle" height="20" width="20" alt="Pic unavailable"></img></a>  {{j.name}} paid Rs. {{j.paid}}
+                    </div>
+                        </li>
+                        {% endfor %}
+                    {% endif %}
+                </ul>
+                <br>
+                <div align="left"><label>People who owe money:</label> </div><br>
+
+                <form class="form-inline" action = "{{ url_for('payorrec') }}" method = "POST" enctype = "multipart/form-data">
+                    <ul class="nav nav-pills nav-stacked">
+                        {% if borrowerList %}
+                        {% for i in borrowerList %}
+                    <li>
+                        <!-- {{i.payOrRec}} -->
+                        <div align="left">
+                        <a href="/userinfo/events {{i.email1}}">
+                        <img src="{{i.profile_pic1}}" class="img-circle" height="20" width="20" alt="Pic unavailable"></img></a>  {{i.name1}}  owes <a href="/userinfo/events {{i.email2}}"><img src="{{i.profile_pic2}}" class="img-circle" height="20" width="20" alt="Pic unavailable"></img></a> {{i.name2}} Rs. {{i.paid}}
+                        {% if i.payOrRec == "paid" %}
+                            <div align="right"><input type="submit" name="{{i.email1}} {{i.email2}} {{tid}}" class="btn btn-primary mb-2" value="Paid"></div>
+                        {% elif i.payOrRec =="recd" %}
+                            <div align="right"><input type="submit" name="{{i.email1}} {{i.email2}} {{tid}}" class="btn btn-primary mb-2" value="Received"></div>
+                        {% endif %}
+                        </div>
+                    </li>     
+                {% endfor %}
+            {% endif %}
+            </ul>
+            </form>
+            </div>
+            </div>
+
+        <!-- <form action = "{{ url_for('events') }}" method = "POST" enctype = "multipart/form-data"> -->
+            <!-- <h1>{{name}}</h1>
+            <h3>{{amount}}</h3> -->
+            <!-- {{date}}  {{time}} -->
+            <!-- <br> -->
+
+            <!-- List of people who paid:<br> -->
+            <!-- <ul>
+            {% if spenderList %}
+                {% for j in spenderList %}                
+                    <li>
+                        
+                        <a href="{{url_for('userinfo' , id=j.email)}}">
+                        <img src="{{j.profile_pic}}" class="img-circle" height="20" width="20" alt="Pic unavailable"></img>  {{j.name}} </a> paid {{j.paid}}
+                    </li>                
+                {% endfor %}
+            {% endif %}
+            </ul>
+            <br> -->
+            <!-- List of people who owe money:<br>
+            <form action = "{{url_for('payorrec')}}" method = "POST" enctype="multipart/form-data">
+            <ul>
+            {% if borrowerList %}
+                {% for i in borrowerList %}
+                    <li>
+                      
+                        <a href="{{url_for('userinfo' , id=i.email1)}}">
+                        <img src="{{i.profile_pic1}}" alt="Pic unavailable"></img>  {{i.name1}} </a> owes <a href="{{url_for('userinfo' , id=i.email2)}}"><img src="{{i.profile_pic2}}" alt="Pic unavailable"></img> {{i.name2}} </a> Rs. {{i.paid}}
+                        {% if i.payOrRec == "paid" %}
+                            <input type="submit" name="{{i.email1}} {{i.email2}} {{tid}}" value="Paid">
+                        {% elif i.payOrRec =="recd" %}
+                            <input type="submit" name="{{i.email1}} {{i.email2}} {{tid}}" value="Received">
+                        {% endif %}
+                    </li>     
+                {% endfor %}
+            {% endif %}
+            </ul> -->
+            <!-- </form> -->
+
+
+
+        <!-- </form> -->
+    </body>
+</html>

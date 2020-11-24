@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head><title>Notifications</title>
+        <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+        <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css')}}" />
+    </head>
+    <body>
+
+        <div class="profile-block">
+            <div class="panel text-center">
+                <div class="user-heading">
+                    <a href="/"><button class="btn btn-xs btn-primary pull-right">Home</button></a>
+                    <br>
+                    <h1>Notifications</h1>
+                  </div><br>
+
+
+        <ul class="nav nav-pills nav-stacked">
+        {% for i in newList %}
+            {% if i.typeOfNot == "1" %}
+                {% if i.email1 == curemail and i.email2 == curemail %}
+                {% elif i.email1 == curemail %}
+                    <li><label>You added <a href="/userinfo/notifications {{i.email2}}"><img src="{{i.profile_pic2}}" class="img-circle" height="20" width="20" alt="Pic unavailable"></img></a>  {{i.name2}} to the event {{i.tName}}</label><div align="right">{{i.date}} at {{i.time}}</div></li>
+                {% else %}
+                <li><label><a href="/userinfo/notifications {{i.email1}}"><img src="{{i.profile_pic1}}" class="img-circle" height="20" width="20" alt="Pic unavailable"></img></a>  {{i.name1}} added you to the event {{i.tName}}</label><div align="right">{{i.date}} at {{i.time}}</div></li>
+                {% endif %}
+            {% else %}
+            {% if i.email1 == curemail %}
+                <li><label>You paid <a href="/userinfo/notifications {{i.email2}}"><img src="{{i.profile_pic2}}" class="img-circle" height="20" width="20" alt="Pic unavailable"></img></a>  {{i.name2}} for the event {{i.tName}}</label><div align="right">{{i.date}} at {{i.time}}</div></li>
+            {% else %}
+                <li><label><a href="/userinfo/notifications {{i.email1}}"><img src="{{i.profile_pic1}}" class="img-circle" height="20" width="20" alt="Pic unavailable"></img></a>  {{i.name1}} paid you for the event {{i.tName}}</label><div align="right">{{i.date}} at {{i.time}}</div></li>
+            {% endif %}
+
+            {% endif %}
+        {% endfor %}
+        </ul>
+    </body>
+</html>

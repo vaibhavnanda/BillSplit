@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head><title>User Info</title>
+        <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+        <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css')}}" />
+    </head>
+    <body>
+        <div class="profile-block">
+            <div class="panel text-center">
+                <div class="user-heading">
+                    <a href="/"><button class="btn btn-xs btn-primary pull-right">Home</button></a>
+                    <a href="/{{back}}"><button class="btn btn-xs btn-primary pull-left">Back</button></a><br>
+                    <h1>User Info</h1>
+                  </div><br>
+        
+        {% for i in data %}
+            <img src="{{i.profile_pic}}" class="img-circle" height="40" width="40" alt="Pic unavailable"></img>
+            {{i.name}}<br>
+            <div align="right">{{i.email}}</div>
+        {% endfor %}
+        </div>
+        </div>
+    </body>
+</html>

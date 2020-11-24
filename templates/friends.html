@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head> <title>Friends</title>
+        <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+        <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css')}}" />
+    </head>
+    <body>
+        <div class="profile-block">
+            <div class="panel text-center">
+                <div class="user-heading">
+                    <a href="/"><button class="btn btn-xs btn-primary pull-right">Home</button></a><br>
+                    <h1>Friends</h1>
+                  </div><br>
+        <!-- <a class="button" href="/">Home</a> -->
+        <form class="form-inline" action = "{{ url_for('friends') }}" method = "POST" enctype = "multipart/form-data">
+            <div class="form-group mb-2">
+                
+                <input type="text" name="add" placeholder="Add Email">
+              </div>
+              <button type="submit" class="btn btn-primary mb-2" value="Add Friend">Add Friend</button>
+        </form>
+
+        <!-- <form action = "{{ url_for('friends') }}" method = "POST" enctype = "multipart/form-data">
+            <p><input type = "text" name = "add">    </p>
+            <p><input type = "submit" value = "Add Friend"></p>
+        </form> -->
+        <br>
+        {% for mesg in get_flashed_messages() %}
+        <h3>{{ mesg }}</h3>
+        {% endfor %}
+        <br>
+        <ul class="nav nav-pills nav-stacked">
+            {%for item in data %}
+            <li><div align="left"><label for="{{item.name}}"><a href="/userinfo/friends {{item.friendemail}}">{{item.friendemail}}</a></label></div><div align="right">  Pay:{{item.pay}}  Rec:{{item.rec}}</div></li>
+            {%endfor%}
+        </ul>
+    </div>
+</div>
+
+        <!-- {% for mesg in get_flashed_messages() %}
+        <h1>{{ mesg }}</h1>
+        {% endfor %}
+        <ul>
+            {%for item in data %}
+            <li>{{item.friendemail}}  {{item.pay}}  {{item.rec}}</li>
+            {%endfor%}
+        </ul>  -->
+    </body>
+</html>

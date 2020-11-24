@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head> <title>Events</title>
+        <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+        <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css')}}" />
+    </head>
+    <body>
+        <div class="profile-block">
+            <div class="panel text-center">
+                <div class="user-heading">
+                    <!-- <div class="text-left"><a href="/"><button class="btn btn-xs btn-primary">Home</button></a></div> -->
+                    <a href="/"><button class="btn btn-xs btn-primary pull-right">Home</button></a><br>
+                    <h1>Events</h1>
+                  </div><br>
+
+                  <form class="form-inline" action = "{{ url_for('events') }}" method = "POST" enctype = "multipart/form-data">
+                    <!-- <div class="form-group mb-2"> -->
+
+                        <ul class="nav nav-pills nav-stacked">
+                            {% for i in data %}
+                            <li>
+                                <label class="pull-left">{{i.name}} : </label><div align="right"> <button type="submit" class="btn btn-primary mb-2" name="{{i.transaction_id}}" value="{{i.name}}">Get Info</button></div>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                        <!-- </div> -->
+                  </form>
+            </div>
+            </div>
+
+
+        <!-- <form action = "{{ url_for('events') }}" method = "POST" enctype = "multipart/form-data">
+            <h1>Events</h1>
+
+            {% for i in data %}
+                <ul>
+                    <li>
+                        {{i.name}} : <input type="submit" name="{{i.transaction_id}}" value="{{i.name}}">
+                    </li>
+                </ul>
+            {% endfor %}
+            <br> -->
+
+
+        <!-- </form> -->
+    </body>
+</html>

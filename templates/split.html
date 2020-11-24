@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head><title>Split</title> 
+        <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+        <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css')}}" />
+    </head>
+    <body>
+        <div class="profile-block">
+            <div class="panel text-center">
+                <div class="user-heading">
+                    <a href="/"><button class="btn btn-xs btn-primary pull-right">Home</button></a><br>
+                    <h1>Split</h1>
+                  </div><br>
+
+                  <br>
+        {% for mesg in get_flashed_messages() %}
+        <h3>{{ mesg }}</h3>
+        {% endfor %}
+        <br>
+
+
+                  <form class="form-inline" action = "{{ url_for('split2') }}" method = "POST" enctype = "multipart/form-data">
+                    <div class="form-group mb-2">
+                        
+                        <input type="text" name="name" placeholder="Event Name">
+                        <input type="text" name="amount" placeholder="Amount">
+                        
+                      </div>
+
+                      <ul class="nav nav-pills nav-stacked">
+                        {% for i in data %}
+                        <li><div align=left>
+                            <label><input type = "checkbox" id = "{{i.email}}" name = "cb" value = "{{i.email}}">
+                                <a href="/userinfo/split {{i.email}}"><img src="{{i.profile_pic}}" class="img-circle" height="20" width="20" alt="Pic unavailable"></img></a> {{i.name}}</label></div></li>
+                        {% endfor %}
+                      </ul>
+                      <button type="submit" class="btn btn-primary mb-2" value="Next">Next</button>
+
+                </form>
+
+        <!-- <form action = "{{ url_for('split2') }}" method = "POST" enctype = "multipart/form-data">
+            <p><input type = "text" name = "name" placeholder = "Event Name">    </p>
+            <p><input type = "text" name = "amount" placeholder = "Amount">    </p> -->
+            <!-- <p><input type = "submit" value = "Amount"></p> -->
+
+            <!-- {% for i in data %}
+                <input type = "checkbox" id = "{{i.email}}" name = "cb" value = "{{i.email}}">
+                <label for="{{i.name}}">{{i.name}}</label>
+            {% endfor %}
+            <br>
+            <input type = "submit" value = "Next">
+
+
+        </form> -->
+        </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head><title>Paid or Received</title>
+        <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+        <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css')}}" />
+    </head>
+    <body>
+        <!-- {{email1}} <br> {{email2}} <br> {{tid}} -->
+
+        <div class="profile-block">
+            <div class="panel text-center">
+                <div class="user-heading">
+                    <a href="/"><button class="btn btn-xs btn-primary pull-right">Home</button></a>
+                    <a href="/events"><button class="btn btn-xs btn-primary pull-left">Back</button></a><br>
+                    <h1>Events</h1>
+                  </div><br>
+                  <form class="form-inline" action = "{{ url_for('confirm') }}" method = "POST" enctype = "multipart/form-data">
+                <button type="submit" name="{{email1}} {{email2}} {{tid}}" class="btn btn-primary mb-2" value="Confirm">Confirm</button>
+        </form>
+        </div>
+        </div>
+    </body>
+</html>
